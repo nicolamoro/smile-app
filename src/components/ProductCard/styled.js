@@ -47,6 +47,8 @@ export const CardStyled = styled(Card)`
       margin-right: 5px;
       text-decoration: line-through;
       font-weight: 300;
+      white-space: nowrap;
+      font-size: 1rem;
     }
 
     .discount-price {
@@ -54,6 +56,7 @@ export const CardStyled = styled(Card)`
       margin-right: 5px;
       color: green;
       font-weight: 500;
+      white-space: nowrap;
     }
 
     .badge {

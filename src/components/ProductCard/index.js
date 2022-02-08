@@ -30,7 +30,7 @@ const ProductCardStyled = (props) => {
         </div>
       </div>
       <CardStyled.Body>
-        <CardStyled.Text className="d-flex align-items-center">
+        <CardStyled.Text className="d-flex flex-wrap align-items-center">
           <span className="original-price">{originalPrice} €</span>
           <span className="discount-price">{discountPrice} €</span>
           <Badge pill bg="warning" text="dark" className="float-end ms-auto">
