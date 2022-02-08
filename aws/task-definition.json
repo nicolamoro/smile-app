@@ -37,7 +37,6 @@
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "546665075294.dkr.ecr.eu-west-1.amazonaws.com/smile-app:4c69a2f5920b67542a87c3e49887ea7381963e5f",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
