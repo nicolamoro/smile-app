@@ -48,6 +48,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: smile-app
+          service: smile-app-service
           cluster: smile-app
           wait-for-service-stability: true
