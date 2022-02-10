@@ -11,7 +11,7 @@ const App = () => {
   return (
     <React.Fragment>
       <NavigationBar />
-      <Container fluid style={{ padding: 0 }}>
+      <Container fluid className="p-0 pb-5">
         <Row className="m-0">
           <SideBar />
           <main className="p-0">
