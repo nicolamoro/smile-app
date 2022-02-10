@@ -15,7 +15,7 @@ const NavigationBar = () => {
       <NavbarButtonStyled
         variant="dark"
         className="shadow-none"
-        data-bs-toggle="collapse"
+        data-bs-toggle="offcanvas"
         data-bs-target="#sidebarMenu"
       >
         <span className="material-icons-round">menu</span>

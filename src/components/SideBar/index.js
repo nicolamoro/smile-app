@@ -12,9 +12,17 @@ const SideBar = () => {
       <Nav
         activeKey={location.pathname}
         id="sidebarMenu"
-        className="col-12 col-sm-3 col-lg-2 bg-light sidebar collapse"
+        className="col-12 col-sm-3 col-lg-2 bg-light offcanvas offcanvas-start"
       >
-        <div className="position-sticky pt-3">
+        <div class="offcanvas-header d-flex flex-row-reverse pb-0">
+          <button
+            type="button"
+            class="btn-close text-reset"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div className="position-sticky pt-0">
           <NavItem>
             <LinkContainer to="/" className="d-flex align-items-center">
               <button className="btn btn-link text-decoration-none shadow-none ms-3 p-1">
