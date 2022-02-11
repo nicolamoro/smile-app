@@ -126,7 +126,7 @@ export const products = [
     code: "F2201212",
   },
   {
-    description: "BOWIE &amp; DICK BCLEAN 10PZ",
+    description: "BOWIE & DICK BCLEAN 10PZ",
     brand: "DEMARCO",
     image: "00137108_.JPG",
     discountPercent: "35",

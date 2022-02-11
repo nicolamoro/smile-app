@@ -1,8 +1,8 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-import PromoCarousel from "../components/Carousel";
-import ProductCardStyled from "../components/ProductCard";
-import { products } from "../providers/products";
+import PromoCarousel from "../../components/Carousel";
+import ProductCardStyled from "../../components/ProductCard";
+import { products } from "../../providers/products";
 
 const Home = () => {
   return (

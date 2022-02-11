@@ -4,6 +4,7 @@ import { Card } from "react-bootstrap";
 export const CardStyled = styled(Card)`
   .card-header {
     text-align: center;
+    background-color: rgba(0, 0, 0, 0.1);
 
     .description {
       font-weight: 500;

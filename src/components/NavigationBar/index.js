@@ -1,5 +1,6 @@
 import React from "react";
 import { LinkContainer } from "react-router-bootstrap";
+import UserDropdown from "../UserDropdown";
 import {
   NavbarStyled,
   NavbarBrandStyled,
@@ -9,17 +10,21 @@ import {
   SearchBarStyled,
 } from "./styled";
 
-const NavigationBar = () => {
+const NavigationBar = (props) => {
+  const { userData } = props;
+
   return (
     <NavbarStyled variant="dark" bg="dark" className="sticky-top p-0">
-      <NavbarButtonStyled
-        variant="dark"
-        className="shadow-none"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#sidebarMenu"
-      >
-        <span className="material-icons-round">menu</span>
-      </NavbarButtonStyled>
+      {userData.username !== undefined && (
+        <NavbarButtonStyled
+          variant="dark"
+          className="shadow-none"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#sidebarMenu"
+        >
+          <span className="material-icons-round">menu</span>
+        </NavbarButtonStyled>
+      )}
       <NavbarBrandStyled className="flex-grow-1 d-flex align-items-center">
         <LinkContainer to="/">
           <NavbarButtonStyled variant="transparent" className="shadow-none">
@@ -47,26 +52,35 @@ const NavigationBar = () => {
           search
         </span>
       </SearchBarStyled>
-      <LinkContainer to="/cart">
-        <NavbarButtonStyled
-          variant="dark"
-          className="shadow-none position-relative m-1"
-        >
-          <span className="material-icons-round">shopping_cart</span>
-          <BadgeStyled
-            pill
-            bg="danger"
-            className="position-absolute top-0 end-0"
+      {userData.username !== undefined ? (
+        <>
+          <LinkContainer to="/cart">
+            <NavbarButtonStyled
+              variant="dark"
+              className="shadow-none position-relative m-1"
+            >
+              <span className="material-icons-round">shopping_cart</span>
+              <BadgeStyled
+                pill
+                bg="danger"
+                className="position-absolute top-0 end-0"
+              >
+                2
+              </BadgeStyled>
+            </NavbarButtonStyled>
+          </LinkContainer>
+          <UserDropdown userData={userData} />
+        </>
+      ) : (
+        <LinkContainer to="/login">
+          <NavbarButtonStyled
+            variant="dark"
+            className="shadow-none position-relative text-nowrap m-1"
           >
-            2
-          </BadgeStyled>
-        </NavbarButtonStyled>
-      </LinkContainer>
-      <LinkContainer to="/customer">
-        <NavbarButtonStyled variant="dark" className="shadow-none">
-          <span className="material-icons-round">person</span>
-        </NavbarButtonStyled>
-      </LinkContainer>
+            Accedi
+          </NavbarButtonStyled>
+        </LinkContainer>
+      )}
     </NavbarStyled>
   );
 };
