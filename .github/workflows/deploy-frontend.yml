@@ -3,7 +3,9 @@ name: Deploy to production
 on:
   push:
     branches:
-      - "master"
+      - master
+    paths:
+      - frontend/**
 
 jobs:
   build:
@@ -27,9 +29,10 @@ jobs:
 
       - name: Build, tag, and push image to Amazon ECR
         id: build-image
+        working-directory: ./frontend
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: smile-app
+          ECR_REPOSITORY: smile-app-frontend
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -f Dockerfile.prod -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
@@ -41,7 +44,7 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: aws/task-definition.json
-          container-name: smile-app
+          container-name: smile-app-frontend
           image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy Amazon ECS task definition
