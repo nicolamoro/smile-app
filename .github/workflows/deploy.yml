@@ -53,7 +53,7 @@ jobs:
         id: task-def-frontend
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: infrastructure/task-definition-frontend.json
+          task-definition: infrastructure/task-definition.json
           container-name: smile-app-frontend
           image: ${{ steps.build-frontend-image.outputs.image }}
 
