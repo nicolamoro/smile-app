@@ -1,0 +1,15 @@
+- [ ] terraform infrastruture
+    - ECR
+        - repositories
+    - ECS
+        - task definition
+        - cluster
+        - service
+    - EC2
+        - VPC
+        - security groups
+        - target groups
+        - load balancer
+- [ ] basic backend
+- [ ] frontend linter
+- [ ] split workflows

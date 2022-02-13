@@ -1,0 +1,13 @@
+# dependencies
+.venv
+__pycache__
+
+# testing
+.pytest_cache
+.coverage
+cov.xml
+cov_html
+
+# misc
+.env*
+!.env-sample

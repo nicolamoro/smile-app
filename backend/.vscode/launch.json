@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run backend",
+      "type": "python",
+      "request": "launch",
+      "program": "src/app.py",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "justMyCode": true
+    },
+    {
+      "name": "Run backend tests",
+      "type": "python",
+      "request": "test",
+      "console": "integratedTerminal",
+      "env": { "PYTEST_ADDOPTS": "--no-cov" },
+      "justMyCode": true
+    }
+  ]
+}
