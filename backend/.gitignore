@@ -10,4 +10,4 @@ cov_html
 
 # misc
 .env*
-!.env-sample
+!.env.sample
