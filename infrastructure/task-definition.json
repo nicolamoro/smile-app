@@ -70,7 +70,7 @@
       "entryPoint": null,
       "portMappings": [
         {
-          "hostPort": 8888,
+          "hostPort": 0,
           "protocol": "tcp",
           "containerPort": 8888
         }
