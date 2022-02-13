@@ -43,7 +43,7 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: aws/task-definition.json
+          task-definition: infrastructure/task-definition.json
           container-name: smile-app-frontend
           image: ${{ steps.build-image.outputs.image }}
 
@@ -51,6 +51,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: smile-app-service
+          service: smile-app-frontend-service
           cluster: smile-app
           wait-for-service-stability: true
