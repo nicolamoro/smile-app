@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - master
-    # paths:
-    #   - frontend/**
 
 jobs:
   build:
@@ -63,14 +61,14 @@ jobs:
         id: task-def-backend
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: infrastructure/task-definition-backend.json
+          task-definition: ${{ steps.task-def-frontend.outputs.task-definition }}
           container-name: smile-app-backend
           image: ${{ steps.build-backend-image.outputs.image }}
 
       - name: Deploy frontend Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: ${{ steps.task-def-frontend.outputs.task-definition }}
+          task-definition: ${{ steps.task-def-backend.outputs.task-definition }}
           service: smile-app-frontend-service
           cluster: smile-app
           wait-for-service-stability: true
