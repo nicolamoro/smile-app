@@ -57,10 +57,18 @@ jobs:
           container-name: smile-app-frontend
           image: ${{ steps.build-frontend-image.outputs.image }}
 
-      - name: Deploy frontend Amazon ECS task definition
-        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      - name: Fill in the new backend image ID in the Amazon ECS task definition
+        id: task-def-backend
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: ${{ steps.task-def-frontend.outputs.task-definition }}
-          service: smile-app-frontend-service
-          cluster: smile-app
+          container-name: smile-app-backend
+          image: ${{ steps.build-backend-image.outputs.image }}
+
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def-backend.outputs.task-definition }}
+          service: smile-app-service
+          cluster: smile-app-cluster
           wait-for-service-stability: true
