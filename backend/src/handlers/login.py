@@ -7,6 +7,15 @@ from utils.auth import create_jwt_token
 
 
 class LoginHandler(tornado.web.RequestHandler):
+    def set_default_headers(self):
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "*")
+        self.set_header("Access-Control-Allow-Methods", "POST, OPTIONS")
+
+    def options(self, *args):
+        self.set_status(204)
+        self.finish()
+
     def post(self):
         """
         ---

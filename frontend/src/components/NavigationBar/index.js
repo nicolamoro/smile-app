@@ -1,4 +1,6 @@
 import React from "react";
+import { useUserSelector } from "../../store/selectors/user";
+import { useCartSelector } from "../../store/selectors/cart";
 import { LinkContainer } from "react-router-bootstrap";
 import UserDropdown from "../UserDropdown";
 import {
@@ -10,8 +12,9 @@ import {
   SearchBarStyled,
 } from "./styled";
 
-const NavigationBar = (props) => {
-  const { userData } = props;
+const NavigationBar = () => {
+  const userData = useUserSelector();
+  const cartData = useCartSelector();
 
   return (
     <NavbarStyled variant="dark" bg="dark" className="sticky-top p-0">
@@ -60,13 +63,15 @@ const NavigationBar = (props) => {
               className="shadow-none position-relative m-1"
             >
               <span className="material-icons-round">shopping_cart</span>
-              <BadgeStyled
-                pill
-                bg="danger"
-                className="position-absolute top-0 end-0"
-              >
-                2
-              </BadgeStyled>
+              {cartData.length > 0 && (
+                <BadgeStyled
+                  pill
+                  bg="danger"
+                  className="position-absolute top-0 end-0"
+                >
+                  {cartData.length}
+                </BadgeStyled>
+              )}
             </NavbarButtonStyled>
           </LinkContainer>
           <UserDropdown userData={userData} />

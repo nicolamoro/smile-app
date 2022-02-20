@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { Card } from "react-bootstrap";
 
 export const CardStyled = styled(Card)`
+  height: 100%;
+
   .card-header {
     text-align: center;
     background-color: rgba(0, 0, 0, 0.1);
@@ -39,10 +41,7 @@ export const CardStyled = styled(Card)`
     }
   }
 
-  .card-text {
-    text-align: center;
-    font-size: 1.4rem;
-
+  .card-title {
     .original-price {
       margin-left: 5px;
       margin-right: 5px;
@@ -62,6 +61,26 @@ export const CardStyled = styled(Card)`
 
     .badge {
       font-size: 0.8rem;
+    }
+  }
+
+  .card-footer {
+    font-size: 1.4rem;
+
+    .add-to-cart {
+      padding: 12px;
+      border-radius: 30px;
+    }
+
+    .quantity-text {
+      font-size: 0.8rem;
+      width: 1.6rem;
+      padding: 0px 0px 0px 6px;
+      flex: unset;
+    }
+
+    .quantity-buttons {
+      font-size: 0.7rem;
     }
   }
 `;

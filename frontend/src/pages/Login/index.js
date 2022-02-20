@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { userLogin } from "../../components/actions/userActions";
+import { userLogin } from "../../store/actions/user";
 import { LoginStyled } from "./styled";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onSubmit = (e) => {
-    dispatch(userLogin(e.target.username.value));
-    navigate("/");
-  };
+  const onSubmit = useCallback(
+    (e) => {
+      dispatch(userLogin(e.target.username.value, e.target.password.value));
+      navigate("/");
+    },
+    [dispatch, navigate]
+  );
 
   return (
     <LoginStyled>

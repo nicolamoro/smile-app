@@ -1,11 +1,12 @@
 import React from "react";
+import { useUserSelector } from "../../store/selectors/user";
 import { useLocation } from "react-router-dom";
 import { Nav, NavItem } from "react-bootstrap";
 import { SideBarStyled } from "./styled";
 import { LinkContainer } from "react-router-bootstrap";
 
-const SideBar = (props) => {
-  const { userData } = props;
+const SideBar = () => {
+  const userData = useUserSelector();
   const location = useLocation();
 
   return (
