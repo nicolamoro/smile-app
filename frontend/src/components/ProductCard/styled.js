@@ -71,16 +71,5 @@ export const CardStyled = styled(Card)`
       padding: 12px;
       border-radius: 30px;
     }
-
-    .quantity-text {
-      font-size: 0.8rem;
-      width: 1.6rem;
-      padding: 0px 0px 0px 6px;
-      flex: unset;
-    }
-
-    .quantity-buttons {
-      font-size: 0.7rem;
-    }
   }
 `;

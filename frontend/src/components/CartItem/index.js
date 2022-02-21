@@ -1,11 +1,12 @@
 import { useDispatch } from "react-redux";
-import { Badge } from "react-bootstrap";
+import { Badge, Col, Row } from "react-bootstrap";
 import {
   cartQuantityAdd,
   cartQuantityRemove,
   cartRemove,
 } from "../../store/actions/cart";
 import { CartItemStyled } from "./styled";
+import QuantityToggler from "../QuantityToggler";
 
 const CartItem = (props) => {
   const { item, index } = props;
@@ -15,14 +16,14 @@ const CartItem = (props) => {
   return (
     <CartItemStyled className="m-3 p-3">
       <div className="d-flex flex-column">
-        <div className="d-flex flex-row">
-          <div className="me-3">
+        <Row xs={1} md={6} lg={6} xl={6} className="d-flex flex-row g-3 m-0">
+          <Col className="flex-fill me-3">
             <img
               alt=""
               src={`https://www.dentalclub.it/FotoArticoli/Thumbnails2/${item.product.image}`}
             />
-          </div>
-          <div className="flex-grow-1">
+          </Col>
+          <Col className="flex-grow-1">
             <div className="fw-bold">{item.product.description}</div>
             <div className="fst-italic">{item.product.brand}</div>
             <Badge pill bg="warning" text="dark">
@@ -31,34 +32,15 @@ const CartItem = (props) => {
             <div>
               Prezzo unitario: {item.product.discountPrice.toFixed(2)}&euro;
             </div>
-          </div>
-          <div className="d-flex align-items-center">
-            <div className="input-group flex-nowrap justify-content-end">
-              <button
-                className="btn btn-sm btn-outline-secondary shadow-none quantity-buttons"
-                type="button"
-                id="button-quantity-minus"
-                onClick={() => dispatch(cartQuantityRemove(index))}
-              >
-                -
-              </button>
-              <input
-                type="text"
-                className="form-control quantity-text"
-                placeholder=""
-                readOnly
-                value={item.quantity}
-              />
-              <button
-                className="btn btn-sm btn-outline-secondary shadow-none quantity-buttons"
-                type="button"
-                onClick={() => dispatch(cartQuantityAdd(index))}
-              >
-                +
-              </button>
-            </div>
-          </div>
-          <div className="d-flex align-items-center">
+          </Col>
+          <Col className="d-flex align-items-center">
+            <QuantityToggler
+              quantity={item.quantity}
+              onMinus={() => dispatch(cartQuantityRemove(index))}
+              onPlus={() => dispatch(cartQuantityAdd(index))}
+            />
+          </Col>
+          <Col className="d-flex justify-content-end align-items-center">
             <button
               className="btn btn-link shadow-none delete-item-button"
               type="button"
@@ -66,8 +48,8 @@ const CartItem = (props) => {
             >
               <span className="material-icons-round align-middle">delete</span>
             </button>
-          </div>
-        </div>
+          </Col>
+        </Row>
         <div className="d-flex justify-content-end fw-bold">
           Parziale: {(item.product.discountPrice * item.quantity).toFixed(2)}
           &euro;

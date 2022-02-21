@@ -4,6 +4,7 @@ import { Badge } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { CardStyled } from "./styled";
 import { cartAdd } from "../../store/actions/cart";
+import QuantityToggler from "../QuantityToggler";
 
 const ProductCardStyled = (props) => {
   const {
@@ -80,29 +81,11 @@ const ProductCardStyled = (props) => {
         {userData.username !== undefined && (
           <CardStyled.Footer className="d-flex align-items-center">
             <div className="flex-grow-1 me-2 align-self-center">
-              <div className="input-group flex-nowrap justify-content-end">
-                <button
-                  className="btn btn-sm btn-outline-secondary shadow-none quantity-buttons"
-                  type="button"
-                  onClick={() => quantity > 1 && setQuantity(quantity - 1)}
-                >
-                  -
-                </button>
-                <input
-                  type="text"
-                  className="form-control quantity-text"
-                  placeholder=""
-                  readOnly
-                  value={quantity}
-                />
-                <button
-                  className="btn btn-sm btn-outline-secondary shadow-none quantity-buttons"
-                  type="button"
-                  onClick={() => quantity < 10 && setQuantity(quantity + 1)}
-                >
-                  +
-                </button>
-              </div>
+              <QuantityToggler
+                quantity={quantity}
+                onMinus={() => quantity > 1 && setQuantity(quantity - 1)}
+                onPlus={() => quantity < 10 && setQuantity(quantity + 1)}
+              />
             </div>
             <div className="text-end">
               <button
@@ -110,9 +93,7 @@ const ProductCardStyled = (props) => {
                 onClick={onAddToCart}
               >
                 <div className="d-flex align-items-center">
-                  <span className="material-icons-round">
-                    add_shopping_cart
-                  </span>
+                  <span className="material-icons-round">add</span>
                 </div>
               </button>
             </div>
