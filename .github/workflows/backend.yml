@@ -89,5 +89,5 @@ jobs:
         with:
           task-definition: ${{ steps.task-def-backend.outputs.task-definition }}
           service: smile-app-backend-service
-          cluster: smile-app-backend-cluster
+          cluster: smile-app-cluster
           wait-for-service-stability: true
