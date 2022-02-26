@@ -1,7 +1,6 @@
 name: Deploy frontend to S3 bucket
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - master

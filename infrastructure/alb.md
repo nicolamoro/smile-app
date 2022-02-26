@@ -1,0 +1,40 @@
+- create new task definition EC2
+	- required compatibilities: EC2
+	- set task role
+	- default network mode
+	- set task execution role
+	- task mem 50
+	- task cpu 128	
+	- container:
+		- image
+		- host port 0
+- create EC2 security groups
+	- new SG "my-alb", default VPC, Inbound Type HTTP, 0.0.0.0/0, port 80
+	- new SG "my-ecs", default VPC, Inbound Type Custom TCP Rule, port range 32768-65535, source custom: SG my-alb
+- create new cluster EC2 Linux + Networking
+	- EC2 instance type: t2.micro
+	- number of instances: 2
+	- select default VPC
+	- select 2/3 subnets
+	- select security group my-ecs
+- create EC2 load balancer
+	- application load balancer
+	- listener default on port 80
+	- default VPC with all availability zones with subnet
+	- select my-alb security group
+	- new target group TG1 default
+- create ECS cluster service
+	- launch type EC2
+	- select task definition
+	- input service name
+	- number of tasks (6)
+	- select application load balancer
+	- select IAM role
+	- select container to load balance
+		- prod listener port 80 HTTP
+		- create new target group 
+		- path pattern /*, evaluation order 1
+		- health check path /
+		
+		
+	

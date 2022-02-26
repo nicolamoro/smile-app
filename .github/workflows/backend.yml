@@ -1,15 +1,50 @@
 name: Deploy backend to ECS
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - master
     paths:
       - backend/**
+      - infrastructure/**
 
 jobs:
+  tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+          
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+
+      - name: Install dependencies
+        working-directory: backend
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r src/requirements.txt
+
+      - name: Check import sorting with isort
+        working-directory: backend
+        run: |
+          isort --multi-line=3 --trailing-comma --check-only --diff --stdout src/
+
+      - name: Lint with black
+        working-directory: backend
+        run: |
+          black --line-length=120 --check --diff src/
+
+      - name: Lint with flake8
+        working-directory: backend
+        run: |
+          flake8 --extend-ignore=E203 --max-complexity=10 --max-line-length=120 src/
+
   build:
+    needs: tests
     name: Build backend image
     runs-on: ubuntu-latest
 
