@@ -1,0 +1,44 @@
+name: Deploy frontend to S3 bucket
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - frontend/**
+
+jobs:
+  build:
+    name: Build webapp
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          path: frontend
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "16"
+
+      - name: Yarn Install
+        run: |
+          yarn install
+
+      - name: Production Build
+        run: |
+          yarn build
+
+      - name: Deploy to S3
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --delete
+        env:
+          AWS_S3_BUCKET: smile-app-frontend-bucket
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: eu-west-1
+          SOURCE_DIR: build
