@@ -5,12 +5,14 @@ from tornado_swagger.setup import setup_swagger
 from config import Config
 from handlers.health import HealthHandler
 from handlers.login import LoginHandler
+from handlers.products import ProductsHandler
 
 
 class Application(tornado.web.Application):
     _routes = [
-        tornado.web.url(r"/health/?", HealthHandler),
+        tornado.web.url(r"/health", HealthHandler),
         tornado.web.url(fr"{Config.API_BASE_URL}/login", LoginHandler),
+        tornado.web.url(fr"{Config.API_BASE_URL}/products", ProductsHandler),
     ]
 
     def __init__(self):
