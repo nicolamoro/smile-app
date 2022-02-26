@@ -1,14 +1,16 @@
-name: Deploy to production
+name: Deploy backend to ECS
 
 on:
   workflow_dispatch:
-  # push:
-  #   branches:
-  #     - master
+  push:
+    branches:
+      - master
+    paths:
+      - backend/**
 
 jobs:
   build:
-    name: Build image
+    name: Build backend image
     runs-on: ubuntu-latest
 
     steps:
@@ -26,21 +28,9 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Build, tag, and push frontend image
-        id: build-frontend-image
-        working-directory: ./frontend
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: smile-app-frontend
-          IMAGE_TAG: ${{ github.sha }}
-        run: |
-          docker build -f Dockerfile.prod -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-
       - name: Build, tag, and push backend image
         id: build-backend-image
-        working-directory: ./backend
+        working-directory: backend
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: smile-app-backend
@@ -50,19 +40,11 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-      - name: Fill in the new frontend image ID in the Amazon ECS task definition
-        id: task-def-frontend
-        uses: aws-actions/amazon-ecs-render-task-definition@v1
-        with:
-          task-definition: infrastructure/task-definition.json
-          container-name: smile-app-frontend
-          image: ${{ steps.build-frontend-image.outputs.image }}
-
       - name: Fill in the new backend image ID in the Amazon ECS task definition
         id: task-def-backend
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: ${{ steps.task-def-frontend.outputs.task-definition }}
+          task-definition: infrastructure/task-definition.json
           container-name: smile-app-backend
           image: ${{ steps.build-backend-image.outputs.image }}
 
@@ -70,6 +52,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def-backend.outputs.task-definition }}
-          service: smile-app-service
-          cluster: smile-app-cluster
+          service: smile-app-backend-service
+          cluster: smile-app-backend-cluster
           wait-for-service-stability: true
