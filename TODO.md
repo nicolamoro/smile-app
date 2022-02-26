@@ -1,5 +1,5 @@
 - [x] basic backend
-- [ ] split workflows
+- [x] split workflows
 - [ ] terraform infrastruture
     - ECR
         - repositories
@@ -12,5 +12,7 @@
         - security groups
         - target groups
         - load balancer
+    - S3 bucket
+    - CloudFront distribution
 - [ ] frontend linter
 - [ ] migrate to TS
