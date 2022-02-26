@@ -9,7 +9,7 @@ from handlers.root import RootHandler
 
 class Application(tornado.web.Application):
     _routes = [
-        tornado.web.url(fr"{Config.API_BASE_URL}/", RootHandler),
+        tornado.web.url(fr"{Config.API_BASE_URL}/?", RootHandler),
         tornado.web.url(fr"{Config.API_BASE_URL}/login", LoginHandler),
     ]
 
