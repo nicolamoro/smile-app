@@ -34,52 +34,41 @@ def create_jwt_token(identity):
     )
 
 
-def require_jwt_auth(handler_class):
-    def wrap_execute(handler_execute):
-        def require_auth(handler, kwargs):
+def require_jwt_auth(func):
+    def decorated(self, *args, **kwargs):
+        auth = self.request.headers.get("Authorization")
+        if auth:
+            parts = auth.split()
 
-            auth = handler.request.headers.get("Authorization")
-            if auth:
-                parts = auth.split()
+            if parts[0].lower() != "bearer" or len(parts) == 1 or len(parts) > 2:
+                self._transforms = []
+                self.set_status(401)
+                self.write({"message": "Invalid Header Authorization"})
+                self.finish()
+                return
 
-                if parts[0].lower() != "bearer" or len(parts) == 1 or len(parts) > 2:
-                    handler._transforms = []
-                    handler.set_status(401)
-                    handler.write({"message": "Invalid Header Authorization"})
-                    handler.finish()
-                    return
-
-                token = parts[1]
-                try:
-                    handler.request.headers[JWT_PAYLOAD_REQUEST_KEY] = jwt.decode(
-                        token,
-                        Config.JWT_SECRET_KEY,
-                        options=JWT_OPTIONS,
-                        algorithms=["HS256"],
-                    )
-
-                except Exception:
-                    handler._transforms = []
-                    handler.set_status(401)
-                    handler.write({"message": "Invalid Authorization"})
-                    handler.finish()
-            else:
-                handler._transforms = []
-                handler.set_status(401)
-                handler.write({"message": "Missing Authorization"})
-                handler.finish()
-
-            return True
-
-        def _execute(self, transforms, *args, **kwargs):
+            token = parts[1]
             try:
-                require_auth(self, kwargs)
+                self.request.headers[JWT_PAYLOAD_REQUEST_KEY] = jwt.decode(
+                    token,
+                    Config.JWT_SECRET_KEY,
+                    options=JWT_OPTIONS,
+                    algorithms=["HS256"],
+                )
+
             except Exception:
-                return False
+                self._transforms = []
+                self.set_status(401)
+                self.write({"message": "Invalid Authorization"})
+                self.finish()
+                return
+        else:
+            self._transforms = []
+            self.set_status(401)
+            self.write({"message": "Missing Authorization"})
+            self.finish()
+            return
 
-            return handler_execute(self, transforms, *args, **kwargs)
+        return func(self, *args, **kwargs)
 
-        return _execute
-
-    handler_class._execute = wrap_execute(handler_class._execute)
-    return handler_class
+    return decorated

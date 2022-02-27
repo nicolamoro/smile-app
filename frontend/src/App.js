@@ -8,13 +8,18 @@ import NotFound from "./pages/NotFound";
 import NavigationBar from "./components/NavigationBar";
 import SideBar from "./components/SideBar";
 import Footer from "./components/Footer";
+import LoadingOverlay from "./components/LoadingOverlay";
+import { useLoadingSelector } from "./store/selectors/loading";
 
 const App = () => {
+  const loadingData = useLoadingSelector();
+
   return (
     <React.Fragment>
       <NavigationBar />
       <Container fluid className="p-0 pb-5">
         <Row className="m-0">
+          {loadingData && <LoadingOverlay />}
           <SideBar />
           <main className="p-0">
             <Routes>

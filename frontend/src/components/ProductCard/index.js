@@ -11,9 +11,9 @@ const ProductCardStyled = (props) => {
     description,
     brand,
     image,
-    discountPercent,
-    originalPrice,
-    discountPrice,
+    discount_percent,
+    original_price,
+    discount_price,
     code,
   } = props;
 
@@ -28,9 +28,9 @@ const ProductCardStyled = (props) => {
           description,
           brand,
           image,
-          discountPercent,
-          originalPrice,
-          discountPrice,
+          discount_percent,
+          original_price,
+          discount_price,
           code,
         },
         quantity
@@ -40,11 +40,11 @@ const ProductCardStyled = (props) => {
     brand,
     code,
     description,
-    discountPercent,
-    discountPrice,
+    discount_percent,
+    discount_price,
     dispatch,
     image,
-    originalPrice,
+    original_price,
     quantity,
   ]);
 
@@ -61,7 +61,7 @@ const ProductCardStyled = (props) => {
         />
         <div className="position-absolute translate-middle-y me-2 end-0 top-50 discount-panel">
           <div className="discount-text">SCONTO</div>
-          <div className="discount-value">{discountPercent}%</div>
+          <div className="discount-value">{discount_percent}%</div>
         </div>
       </div>
       <CardStyled.Body className="d-flex flex-column p-0">
@@ -72,10 +72,10 @@ const ProductCardStyled = (props) => {
             </Badge>
           </div>
           <span className="flex-grow-1 text-end original-price align-self-center">
-            {originalPrice.toFixed(2)} €
+            {original_price.toFixed(2)} €
           </span>
           <span className="flex-grow-1 discount-price align-self-center">
-            {discountPrice.toFixed(2)} €
+            {discount_price.toFixed(2)} €
           </span>
         </CardStyled.Title>
         {userData.username !== undefined && (

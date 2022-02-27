@@ -7,7 +7,7 @@ const Cart = () => {
 
   const total = useMemo(() => {
     return cartData.reduce(
-      (acc, item) => acc + item.quantity * item.product.discountPrice,
+      (acc, item) => acc + item.quantity * item.product.discount_price,
       0
     );
   }, [cartData]);

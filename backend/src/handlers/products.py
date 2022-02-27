@@ -3,17 +3,17 @@ import tornado.web
 from utils.auth import require_jwt_auth
 
 
-@require_jwt_auth
 class ProductsHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
         self.set_header("Access-Control-Allow-Origin", "*")
         self.set_header("Access-Control-Allow-Headers", "*")
-        self.set_header("Access-Control-Allow-Methods", "POST, OPTIONS")
+        self.set_header("Access-Control-Allow-Methods", "GET, OPTIONS")
 
     def options(self, *args):
         self.set_status(204)
         self.finish()
 
+    @require_jwt_auth
     def get(self):
         """
         ---

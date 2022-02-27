@@ -3,9 +3,19 @@ import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import cartReducer from "./reducers/cart";
 import userReducer from "./reducers/user";
+import productsReducer from "./reducers/products";
+import loadingReducer from "./reducers/loading";
 import config from "../config";
 
-const rootReducer = combineReducers({ user: userReducer, cart: cartReducer });
+const allReducers = combineReducers({
+  user: userReducer,
+  cart: cartReducer,
+  products: productsReducer,
+  loading: loadingReducer,
+});
+const rootReducer = (state, action) => {
+  return allReducers(state, action);
+};
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware));
 
 const persistedStoreString = localStorage.getItem(config.localStorage);

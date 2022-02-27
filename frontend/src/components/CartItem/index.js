@@ -30,7 +30,7 @@ const CartItem = (props) => {
               {item.product.code}
             </Badge>
             <div>
-              Prezzo unitario: {item.product.discountPrice.toFixed(2)}&euro;
+              Prezzo unitario: {item.product.discount_price.toFixed(2)}&euro;
             </div>
           </Col>
           <Col className="d-flex align-items-center">
@@ -51,7 +51,7 @@ const CartItem = (props) => {
           </Col>
         </Row>
         <div className="d-flex justify-content-end fw-bold">
-          Parziale: {(item.product.discountPrice * item.quantity).toFixed(2)}
+          Parziale: {(item.product.discount_price * item.quantity).toFixed(2)}
           &euro;
         </div>
       </div>

@@ -6,6 +6,7 @@ const config = {
   localStorage: LOCAL_STORAGE,
   apis: {
     login: `${baseApiUrl}/api/1/login`,
+    productsGet: `${baseApiUrl}/api/1/products`,
   },
 };
 

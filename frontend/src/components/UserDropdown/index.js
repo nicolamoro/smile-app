@@ -11,8 +11,7 @@ const UserDropdown = (props) => {
   const navigate = useNavigate();
 
   const onLogout = useCallback(() => {
-    dispatch(userLogout());
-    navigate("/");
+    dispatch(userLogout(navigate));
   }, [dispatch, navigate]);
 
   return (
