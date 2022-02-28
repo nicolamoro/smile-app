@@ -9,7 +9,36 @@ on:
       - frontend/**
 
 jobs:
+  tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "16"
+
+      - uses: actions/cache@v2
+        with:
+          path: "frontend/node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('frontend/yarn.lock') }}
+
+      - name: Install Dependencies
+        working-directory: frontend
+        run: |
+          yarn install
+
+      - name: Lint with ESLint
+        working-directory: frontend
+        run: |
+          yarn lint
+
   build:
+    needs: tests
     name: Build webapp
     runs-on: ubuntu-latest
 
@@ -21,6 +50,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "16"
+
+      - uses: actions/cache@v2
+        with:
+          path: "frontend/node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('frontend/yarn.lock') }}
 
       - name: Install Dependencies
         working-directory: frontend

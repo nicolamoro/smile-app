@@ -4,5 +4,22 @@
     "react-app/jest",
     "prettier",
     "plugin:prettier/recommended"
-  ]
+  ],
+  "plugins": ["eslint-plugin-react-hooks"],
+  "rules": {
+    "prettier/prettier": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "error",
+    "eqeqeq": "error",
+    "array-callback-return": "error",
+    "no-shadow": "error",
+    "no-return-await": "error",
+    "no-unused-vars": "error",
+    "no-empty-function": "error"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
 }

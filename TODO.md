@@ -15,5 +15,5 @@
     - S3 bucket
     - CloudFront distribution
 - [x] backend linter
-- [ ] frontend linter
+- [x] frontend linter
 - [ ] migrate to TS
