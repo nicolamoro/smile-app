@@ -6,12 +6,14 @@ import userReducer from "./reducers/user";
 import productsReducer from "./reducers/products";
 import loadingReducer from "./reducers/loading";
 import config from "../config";
+import toastsReducer from "./reducers/toasts";
 
 const allReducers = combineReducers({
   user: userReducer,
   cart: cartReducer,
   products: productsReducer,
   loading: loadingReducer,
+  toasts: toastsReducer,
 });
 const rootReducer = (state, action) => {
   return allReducers(state, action);

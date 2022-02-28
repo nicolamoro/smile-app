@@ -10,5 +10,6 @@ export const QuantityTogglerStyled = styled.div`
 
   .quantity-buttons {
     font-size: 1rem;
+    border-color: #aaa;
   }
 `;

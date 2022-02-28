@@ -10,6 +10,7 @@ import SideBar from "./components/SideBar";
 import Footer from "./components/Footer";
 import LoadingOverlay from "./components/LoadingOverlay";
 import { useLoadingSelector } from "./store/selectors/loading";
+import ToastArea from "./components/ToastArea";
 
 const App = () => {
   const loadingData = useLoadingSelector();
@@ -32,6 +33,7 @@ const App = () => {
         </Row>
       </Container>
       <Footer />
+      <ToastArea />
     </React.Fragment>
   );
 };
