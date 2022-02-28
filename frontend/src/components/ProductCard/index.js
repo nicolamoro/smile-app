@@ -65,18 +65,20 @@ const ProductCardStyled = (props) => {
         </div>
       </div>
       <CardStyled.Body className="d-flex flex-column p-0">
-        <CardStyled.Title className="d-flex flex-grow-1 p-2">
+        <CardStyled.Title className="d-flex flex-wrap flex-grow-1 p-2">
           <div className="flex-grow-1 align-self-center">
             <Badge pill bg="warning" text="dark">
               {code}
             </Badge>
           </div>
-          <span className="flex-grow-1 text-end original-price align-self-center">
-            {original_price.toFixed(2)} €
-          </span>
-          <span className="flex-grow-1 discount-price align-self-center">
-            {discount_price.toFixed(2)} €
-          </span>
+          <div className="flex-grow-2 align-self-center">
+            <span className="text-end original-price">
+              {original_price.toFixed(2)} €
+            </span>
+            <span className="text-end discount-price">
+              {discount_price.toFixed(2)} €
+            </span>
+          </div>
         </CardStyled.Title>
         {userData.username !== undefined && (
           <CardStyled.Footer className="d-flex align-items-center">
