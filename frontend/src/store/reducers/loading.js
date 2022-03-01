@@ -1,4 +1,4 @@
-import { FETCHDATA_START, FETCHDATA_END } from "../actions/loading";
+import { FETCHDATA_START, FETCHDATA_END } from "store/actions/loading";
 
 const initialState = false;
 

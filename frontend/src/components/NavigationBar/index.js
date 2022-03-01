@@ -1,8 +1,8 @@
 import React from "react";
-import { useUserSelector } from "../../store/selectors/user";
-import { useCartSelector } from "../../store/selectors/cart";
+import { useUserSelector } from "store/selectors/user";
+import { useCartSelector } from "store/selectors/cart";
 import { LinkContainer } from "react-router-bootstrap";
-import UserDropdown from "../UserDropdown";
+import UserDropdown from "components/UserDropdown";
 import {
   NavbarStyled,
   NavbarBrandStyled,

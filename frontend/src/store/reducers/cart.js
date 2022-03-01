@@ -4,7 +4,7 @@ import {
   CART_EMPTY,
   CART_QUANTITY_ADD,
   CART_QUANTITY_REMOVE,
-} from "../actions/cart";
+} from "store/actions/cart";
 
 const initialState = [];
 

@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { TOAST_SHOW, TOAST_DISMISS } from "../actions/toasts";
+import { TOAST_SHOW, TOAST_DISMISS } from "store/actions/toasts";
 
 const initialState = [];
 

@@ -5,7 +5,7 @@ import cartReducer from "./reducers/cart";
 import userReducer from "./reducers/user";
 import productsReducer from "./reducers/products";
 import loadingReducer from "./reducers/loading";
-import config from "../config";
+import config from "config";
 import toastsReducer from "./reducers/toasts";
 
 const allReducers = combineReducers({

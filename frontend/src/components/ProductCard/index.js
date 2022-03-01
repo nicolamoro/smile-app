@@ -1,10 +1,10 @@
 import React, { useState, useCallback } from "react";
-import { useUserSelector } from "../../store/selectors/user";
+import { useUserSelector } from "store/selectors/user";
 import { Badge } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { CardStyled } from "./styled";
-import { cartAdd } from "../../store/actions/cart";
-import QuantityToggler from "../QuantityToggler";
+import { cartAdd } from "store/actions/cart";
+import QuantityToggler from "components/QuantityToggler";
 
 const ProductCardStyled = (props) => {
   const {

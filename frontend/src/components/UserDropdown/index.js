@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { UserDropdownStyled } from "./styled";
-import { userLogout } from "../../store/actions/user";
+import { userLogout } from "store/actions/user";
 
 const UserDropdown = (props) => {
   const { userData } = props;

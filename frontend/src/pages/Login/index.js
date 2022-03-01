@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { userLogin } from "../../store/actions/user";
+import { userLogin } from "store/actions/user";
 import { LoginStyled } from "./styled";
 
 const Login = () => {

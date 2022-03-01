@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useToastsSelector } from "../../store/selectors/toasts";
-import { toastDismiss } from "../../store/actions/toasts";
+import { useToastsSelector } from "store/selectors/toasts";
+import { toastDismiss } from "store/actions/toasts";
 import { ToastContainerStyled, ToastStyled } from "./styled";
 
 const ToastArea = () => {

@@ -1,4 +1,4 @@
-import { PRODUCTS_GET_SUCCESS } from "../actions/products";
+import { PRODUCTS_GET_SUCCESS } from "store/actions/products";
 
 const initialState = [];
 

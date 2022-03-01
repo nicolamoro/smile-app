@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
-import CartItem from "../../components/CartItem";
-import { useCartSelector } from "../../store/selectors/cart";
+import CartItem from "components/CartItem";
+import { useCartSelector } from "store/selectors/cart";
 
 const Cart = () => {
   const cartData = useCartSelector();

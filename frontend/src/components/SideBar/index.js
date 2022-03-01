@@ -1,5 +1,5 @@
 import React from "react";
-import { useUserSelector } from "../../store/selectors/user";
+import { useUserSelector } from "store/selectors/user";
 import { useLocation } from "react-router-dom";
 import { Nav, NavItem } from "react-bootstrap";
 import { SideBarStyled } from "./styled";

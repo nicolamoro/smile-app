@@ -1,4 +1,4 @@
-import config from "../../config";
+import config from "config";
 import { fetchData } from "./fetchData";
 
 export const PRODUCTS_GET = "PRODUCTS_GET";

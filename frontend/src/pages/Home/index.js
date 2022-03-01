@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Col, Row } from "react-bootstrap";
-import { productsGet } from "../../store/actions/products";
-import { useProductsSelector } from "../../store/selectors/products";
-import PromoCarousel from "../../components/Carousel";
-import ProductCardStyled from "../../components/ProductCard";
+import { productsGet } from "store/actions/products";
+import { useProductsSelector } from "store/selectors/products";
+import PromoCarousel from "components/Carousel";
+import ProductCardStyled from "components/ProductCard";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {

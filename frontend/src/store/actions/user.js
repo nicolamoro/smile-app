@@ -1,5 +1,5 @@
 import axios from "axios";
-import config from "../../config";
+import config from "config";
 
 export const USER_LOGIN = "USER_LOGIN";
 export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";

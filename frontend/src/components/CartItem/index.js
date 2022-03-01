@@ -4,9 +4,9 @@ import {
   cartQuantityAdd,
   cartQuantityRemove,
   cartRemove,
-} from "../../store/actions/cart";
+} from "store/actions/cart";
 import { CartItemStyled } from "./styled";
-import QuantityToggler from "../QuantityToggler";
+import QuantityToggler from "components/QuantityToggler";
 
 const CartItem = (props) => {
   const { item, index } = props;
