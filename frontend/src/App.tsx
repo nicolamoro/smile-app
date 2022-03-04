@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { Container, Row } from "react-bootstrap";
 import Home from "./pages/Home";
@@ -16,7 +15,7 @@ const App = () => {
   const loadingData = useLoadingSelector();
 
   return (
-    <React.Fragment>
+    <>
       <NavigationBar />
       <Container fluid className="p-0 pb-5">
         <Row className="m-0">
@@ -34,7 +33,7 @@ const App = () => {
       </Container>
       <Footer />
       <ToastArea />
-    </React.Fragment>
+    </>
   );
 };
 
